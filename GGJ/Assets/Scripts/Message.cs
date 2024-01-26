@@ -12,7 +12,7 @@ public class Message : MonoBehaviour
     private string _startBalise = "<color=red>";
     private string _endBalise = "</color>";
 
-    private string _msg = "Test";
+    private string _msg = "TEST";
     private int _cursor = 0;
 
     #endregion
@@ -28,7 +28,7 @@ public class Message : MonoBehaviour
         var letter = _msg.Substring(_cursor, 1);
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
-            if (Input.GetKeyDown(key))
+            if (Input.GetKeyDown(key) && key.ToString() == letter)
             {
                 _cursor += 1;
             }
