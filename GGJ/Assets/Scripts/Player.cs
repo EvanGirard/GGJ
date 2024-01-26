@@ -14,6 +14,27 @@ public class Player : MonoBehaviour
     #endregion
 
 
+    #region Other Functio,s
+
+    public float GetPv()
+    {
+        return _pv;
+    }
+
+
+    public void SetPv(float pv)
+    {
+        _pv = pv;
+
+        if (_pv <= 0f)
+        {
+            Debug.Log("Mort");
+        }
+    }
+
+    #endregion
+
+
     #region Unity Event Functions
 
     private void Awake()
@@ -30,6 +51,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        /*
+         * Movements of the player
+         */
+        
         var position = transform.position;
         
         if (Input.GetKey(KeyCode.UpArrow)) // Forward
