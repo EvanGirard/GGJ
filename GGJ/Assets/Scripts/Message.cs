@@ -8,8 +8,8 @@ public class Message : MonoBehaviour
     #region Attributes
 
     [SerializeField] private TextMeshProUGUI msgToPrint;
-    private string _startBalise = "<color=red>";
-    private string _endBalise = "</color>";
+    private readonly string _startTag = "<color=red>";
+    private readonly string _endTag = "</color>";
 
     private string _msg = "û ô ê";
     private int _cursor = 0;
@@ -21,10 +21,8 @@ public class Message : MonoBehaviour
 
     private void Update()
     {
-        /*
-         * We test if the correct answer is given
-         */
         var letter = _msg.Substring(_cursor, 1);
+        
         
         //The player doesn't have to wright spaces
         if (letter == " ") 
@@ -32,6 +30,7 @@ public class Message : MonoBehaviour
             _cursor += 1;
             letter = _msg.Substring(_cursor, 1);
         }
+        
         
         //AZERTY Keybord
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
@@ -104,22 +103,22 @@ public class Message : MonoBehaviour
                 }
                 if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     && Input.GetKey(KeyCode.LeftBracket)
-                    && Input.GetKey(KeyCode.I))
+                    && Input.GetKey(KeyCode.I)) //ï
                 {
                     keyString = "Ï";
                 }
                 if (Input.GetKey(KeyCode.LeftBracket)
-                    && Input.GetKey(KeyCode.U))
+                    && Input.GetKey(KeyCode.U)) //û
                 {
                     keyString = "Û";
                 }
                 if (Input.GetKey(KeyCode.LeftBracket)
-                    && Input.GetKey(KeyCode.O))
+                    && Input.GetKey(KeyCode.O)) //ô
                 {
                     keyString = "Ô";
                 }
                 if (Input.GetKey(KeyCode.LeftBracket)
-                    && Input.GetKey(KeyCode.E))
+                    && Input.GetKey(KeyCode.E)) //ê
                 {
                     keyString = "Ê";
                 }
@@ -138,7 +137,7 @@ public class Message : MonoBehaviour
         /*
          * We print the message with the letter correctly answer in red
          */
-        msgToPrint.text = _startBalise + _msg.Substring(0, _cursor) + _endBalise + _msg.Substring(_cursor);
+        msgToPrint.text = _startTag + _msg.Substring(0, _cursor) + _endTag + _msg.Substring(_cursor);
     }
 
     #endregion
