@@ -23,6 +23,7 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         gameObject.transform.position = new Vector3(-5, 4, 0);
+        DeathCone();
     }
     
     void Awake()
@@ -53,12 +54,10 @@ public class BossManager : MonoBehaviour
 
     private void DeathCone()
     {
-        for (int i = 0; i < 12; i += 1)
+        for (int i = 1; i < 7; i += 1)
         {
-            for (int j = 0; i < 12; i += 1)
-            {
-                StartCoroutine(CreateBoule(1, new Vector3(), ballPrefab));
-            }
+            Vector3 direction = Vector3.Normalize(new Vector3(Mathf.Cos(- i * Mathf.PI / 8), Mathf.Sin(- i * Mathf.PI / 8), 0));
+            StartCoroutine(Create_nBoule(12, 1, 2 * direction, ballPrefab));
         }
     }
 
@@ -134,5 +133,20 @@ public class BossManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         ball.GetComponent<SpriteRenderer>().enabled = true;
+    }
+    
+    private IEnumerator Create_nBoule(int n, float f, Vector3 direction, GameObject ballPrefab)
+    {
+        for (int i = 0; i < n; i += 1)
+        {
+            yield return new WaitForSeconds(f);
+
+            GameObject ball = Instantiate(ballPrefab, gameObject.transform.position, gameObject.transform.rotation);
+            ball.GetComponent<Rigidbody2D>().velocity = direction;
+
+            yield return new WaitForSeconds(0.1f);
+
+            ball.GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 }
