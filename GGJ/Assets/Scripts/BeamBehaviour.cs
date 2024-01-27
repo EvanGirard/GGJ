@@ -10,7 +10,7 @@ public class BeamBehaviour : MonoBehaviour
         {
             //voir avec la goat comment on gère le joueur
         }
-
+      
     }
 }
-}
+
