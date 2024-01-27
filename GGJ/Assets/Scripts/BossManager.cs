@@ -21,6 +21,13 @@ public class BossManager : MonoBehaviour
     public static BossManager instance;
     
     Vector3 _goToPosition;
+    
+    //Animations
+    private Animator _animator;
+    private int IsAttackingID;
+    
+    
+    
     void Start()
     {
         gameObject.transform.position = new Vector3(-5, 4, 0);
@@ -33,6 +40,9 @@ public class BossManager : MonoBehaviour
             Destroy(gameObject);    // Suppression d'une instance pr�c�dente (s�curit�...s�curit�...)
 
         instance = this;
+
+        _animator = GetComponent<Animator>();
+        IsAttackingID = Animator.StringToHash("isAttacking");
     }
 
     private int RandomPatern()
