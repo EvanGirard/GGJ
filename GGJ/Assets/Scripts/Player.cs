@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 
 
@@ -8,6 +9,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private UIHealthBar uiHealthBarScript;
     private CharacterController _characterController;
+    
+    // Animations
+    private Animator _animator;
+    private int IsWalkingID;
     
     private const float Speed = 5f;
     private static bool _canMove = true;
@@ -52,6 +57,9 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
+
+        IsWalkingID = Animator.StringToHash("isWalking");
     }
 
 
@@ -90,7 +98,15 @@ public class Player : MonoBehaviour
                 position -= Speed * Time.deltaTime * transform.right;
             }
 
-            transform.position = position;
+            if (transform.position == position)
+            {
+                _animator.SetBool(IsWalkingID, false);
+            }
+            else
+            {
+                transform.position = position;
+                _animator.SetBool(IsWalkingID, true);
+            }
         }
         
     }
