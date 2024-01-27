@@ -63,13 +63,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // POUR LE DEBUG ça
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            ApplyDamage(20f);
-        }
-        
-        
         /*
          * Movements of the player
          */
@@ -96,13 +89,8 @@ public class Player : MonoBehaviour
             {
                 position -= Speed * Time.deltaTime * transform.right;
             }
-        
-            var newPosition = Vector3.MoveTowards(
-                transform.position,
-                position,
-                Speed * Time.deltaTime);
-        
-            _characterController.Move(newPosition - transform.position);
+
+            transform.position = position;
         }
         
     }
