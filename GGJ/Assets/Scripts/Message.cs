@@ -174,6 +174,11 @@ public class Message : MonoBehaviour
                 {
                     _cursor += 1;   
                 }
+                else
+                {
+                    if (_cursor == 0) return;
+                    _cursor -= 1;
+                }
             }
         }
         
