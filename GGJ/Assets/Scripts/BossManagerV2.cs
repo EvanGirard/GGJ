@@ -10,13 +10,19 @@ public class BossManagerV2 : MonoBehaviour
     [SerializeField] private float speedBallCouloir= 10f;
     public List<GameObject> ProjectileList = new List<GameObject>();
     private Player _player;
-    
+    private GameObject trait1;
+    private GameObject trait2;
     
 
     public void Update()
     {
         _player=GetComponentInParent<Player>(); // ligne à changer avec la vraie position du joueur
-    }
+        if (trait1.transform.position.x == 5f && trait2.transform.position.x == -5f)
+        {
+            trait1.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            trait2.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        }
+    }    
     
     
     void PatternCouloir()
@@ -47,9 +53,9 @@ IEnumerator CouloirLaser()
     yield return new WaitForSeconds(2);
         
     // création des lasers
-    GameObject trait1 = Instantiate(projectileTrait);
+    trait1 = Instantiate(projectileTrait);
     ProjectileList.Add(trait1);
-    GameObject trait2 = Instantiate(projectileTrait);
+    trait2 = Instantiate(projectileTrait);
     ProjectileList.Add(trait2);
     trait1.transform.position = new Vector3(point1.transform.position.x, point1.transform.position.y / 2);
     trait2.transform.position = new Vector3(point2.transform.position.x, point2.transform.position.y / 2);
