@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BeamBehaviour : MonoBehaviour
 {
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent(out Player playerScript))
         {
-            //voir avec la goat comment on gère le joueur
+            playerScript.ApplyDamage(5f);
         }
       
     }
