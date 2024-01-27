@@ -11,6 +11,7 @@ public class BossManagerV2 : MonoBehaviour
     public List<GameObject> ProjectileList = new List<GameObject>();
     private Player _player;
     private GameObject trait1;
+    private GameObject trait3;
     private GameObject trait2;
     
 
@@ -22,9 +23,154 @@ public class BossManagerV2 : MonoBehaviour
             trait1.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             trait2.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
-    }    
+    }
+
+    IEnumerator GBlaster()
+    {
+        for (int i = 0; i < 2; i += 1)
+        {
+            Vector2 depart1; 
+            depart1= new  Vector2(-20, 20); 
+            Vector2 depart2;
+            depart2= new Vector2(-20, -20); 
+            float speed=10f;
+        
+            // création de l'origine des lasers
+            GameObject point1 = Instantiate(projectilePoint);
+            ProjectileList.Add(point1);
+            point1.transform.position = depart1;
+            GameObject point2 = Instantiate(projectilePoint);
+            ProjectileList.Add(point2);
+            point2.transform.position = depart2;
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            trait1 = Instantiate(projectileTrait);
+            ProjectileList.Add(trait1);
+            trait2 = Instantiate(projectileTrait);
+            ProjectileList.Add(trait2);
+            trait1.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait2.transform.rotation= Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait1.transform.position = new Vector3(0, point1.transform.position.y );
+            trait2.transform.position = new Vector3(0, point2.transform.position.y );
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            
+            // deuxième attaques
+            depart1= new  Vector2(-20, 0); 
+            depart2= new Vector2(-20, -5);
+            Vector2 depart3;
+            depart3 = new Vector2(-20, 5);
+        
+            // création de l'origine des lasers
+            point1 = Instantiate(projectilePoint);
+            point1.transform.position = depart1;
+            point2 = Instantiate(projectilePoint);
+            point2.transform.position = depart2;
+            GameObject point3 = Instantiate(projectilePoint);
+            point3.transform.position = depart3;
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            trait1 = Instantiate(projectileTrait);
+            trait2 = Instantiate(projectileTrait);
+            trait3 = Instantiate(projectileTrait);
+            trait1.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait2.transform.rotation= Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait3.transform.rotation= Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait1.transform.position = new Vector3(0, point1.transform.position.y );
+            trait2.transform.position = new Vector3(0, point2.transform.position.y );
+            trait3.transform.position = new Vector3(0, point2.transform.position.y );
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            Destroy(point3);
+            Destroy(trait3);
+            
+            // troisième attaques
+            depart1= new  Vector2(-20, -1); 
+            depart2= new Vector2(-20, -15);
+            depart3 = new Vector2(-20, 8);
+        
+            // création de l'origine des lasers
+            point1 = Instantiate(projectilePoint);
+            point1.transform.position = depart1;
+            point2 = Instantiate(projectilePoint);
+            point2.transform.position = depart2;
+            point3 = Instantiate(projectilePoint);
+            point3.transform.position = depart3;
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            trait1 = Instantiate(projectileTrait);
+            trait2 = Instantiate(projectileTrait);
+            trait3 = Instantiate(projectileTrait);
+            trait1.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait2.transform.rotation= Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait3.transform.rotation= Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait1.transform.position = new Vector3(0, point1.transform.position.y );
+            trait2.transform.position = new Vector3(0, point2.transform.position.y );
+            trait3.transform.position = new Vector3(0, point2.transform.position.y );
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            Destroy(point3);
+            Destroy(trait3);
+            
+            // troisième attaques
+            depart1= new  Vector2(-20, 1); 
+            depart2= new Vector2(-20, -8);
+            depart3 = new Vector2(-20, 15);
+        
+            // création de l'origine des lasers
+            point1 = Instantiate(projectilePoint);
+            point1.transform.position = depart1;
+            point2 = Instantiate(projectilePoint);
+            point2.transform.position = depart2;
+            point3 = Instantiate(projectilePoint);
+            point3.transform.position = depart3;
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            trait1 = Instantiate(projectileTrait);
+            trait2 = Instantiate(projectileTrait);
+            trait3 = Instantiate(projectileTrait);
+            trait1.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait2.transform.rotation= Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait3.transform.rotation= Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            trait1.transform.position = new Vector3(0, point1.transform.position.y );
+            trait2.transform.position = new Vector3(0, point2.transform.position.y );
+            trait3.transform.position = new Vector3(0, point2.transform.position.y );
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            Destroy(point3);
+            Destroy(trait3);
+        }
+        
+    }
     
-    
+    void PatternBlaster()
+    {
+        StartCoroutine(GBlaster());
+    }
     void PatternCouloir()
     {
         StartCoroutine(CouloirLaser());
