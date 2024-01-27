@@ -9,13 +9,14 @@ public class BossManager : MonoBehaviour
     private bool _isMoving;
     private bool _isLeft = true;
     private bool _canAttack = true;
-    
+
+    [SerializeField] GameObject player;
     [SerializeField] GameObject lazerPrefab;
     [SerializeField] GameObject startLazerPrefab;
     [SerializeField] GameObject ballPrefab;
     
     public List<GameObject> LazerList = new List<GameObject>();
-    
+    public List<GameObject> StartLazerList = new List<GameObject>();
     
     public static BossManager instance;
     
@@ -23,7 +24,7 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         gameObject.transform.position = new Vector3(-5, 4, 0);
-        DeathCone();
+        DeathKaleidoscope();
     }
     
     void Awake()
@@ -61,8 +62,32 @@ public class BossManager : MonoBehaviour
         }
     }
 
+    private void DeathPath()
+    {
+        _variationTime = -100f;
+        _goToPosition = new Vector3(0, 4, 0);
+        _isMoving = true;
+        
+        StartCoroutine(CouloirLaser());
+        
+        StartCoroutine(CreateBoulePath());
+
+        _variationTime = 3f;
+    }
+
+    private void DeathBlasters()
+    {
+        StartCoroutine(GBlaster());
+    }
+
+    private void DeathKaleidoscope()
+    {
+        StartCoroutine(SJKaleido());
+    }
+    
     void Update()
     {
+        /*
         _variationTime += Time.deltaTime;
         
         if (_variationTime >= 3f)
@@ -80,7 +105,7 @@ public class BossManager : MonoBehaviour
             }
 
             _isMoving = true;
-        }
+        }*/
 
         if (_isMoving)
         {
@@ -148,5 +173,197 @@ public class BossManager : MonoBehaviour
 
             ball.GetComponent<SpriteRenderer>().enabled = true;
         }
+    }
+    
+    IEnumerator CouloirLaser()
+    {
+        float speed=2f;
+        
+        // création de l'origine des lasers
+        GameObject point1 = Instantiate(startLazerPrefab, new Vector3(7, 10, 0), gameObject.transform.rotation);
+        GameObject point2 = Instantiate(startLazerPrefab, new Vector3(-7, 10, 0), gameObject.transform.rotation);
+        
+        yield return new WaitForSeconds(2);
+        
+        // création des lasers
+        GameObject trait1 = Instantiate(lazerPrefab, new Vector3(point1.transform.position.x, point1.transform.position.y / 2, 0), gameObject.transform.rotation);
+        GameObject trait2 = Instantiate(lazerPrefab, new Vector3(point2.transform.position.x, point2.transform.position.y / 2, 0), gameObject.transform.rotation);
+    
+        //mouvement des lasers 
+        trait1.GetComponent<Rigidbody2D>().velocity = new Vector3(-speed , 0, 0);
+        trait2.GetComponent<Rigidbody2D>().velocity = new Vector3(speed , 0, 0);
+
+        while (trait1.transform.position.x >= 5f)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        
+        trait1.GetComponent<Rigidbody2D>().velocity = new Vector3(0 , 0, 0);
+        trait2.GetComponent<Rigidbody2D>().velocity = new Vector3(0 , 0, 0);
+        
+        yield return new WaitForSeconds(7);
+        
+        Destroy(point1);
+        Destroy(trait1);
+        Destroy(point2);
+        Destroy(trait2);
+    }
+
+    IEnumerator CreateBoulePath()
+    {
+        yield return new WaitForSeconds(5f);
+        
+        for (int i = 0; i < 8; i += 1)
+        {
+            yield return new WaitForSeconds(1.5f);
+
+            GameObject ball;
+            if (i % 2 == 0)
+            {
+                ball = Instantiate(ballPrefab, gameObject.transform.position + 1f * Vector3.right, gameObject.transform.rotation);
+            }
+            else
+            {
+                ball = Instantiate(ballPrefab, gameObject.transform.position - 1f * Vector3.right, gameObject.transform.rotation);
+            }
+            ball.GetComponent<Rigidbody2D>().velocity = Vector3.down;
+        
+            yield return new WaitForSeconds(0.1f);
+
+            ball.GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
+    
+    IEnumerator GBlaster()
+    {
+        for (int i = 0; i < 2; i += 1)
+        {
+            Vector2 depart1; 
+            depart1= new  Vector2(-20, 20); 
+            Vector2 depart2;
+            depart2= new Vector2(-20, -20); 
+            float speed=10f;
+        
+            // création de l'origine des lasers
+            GameObject point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
+            GameObject point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
+            
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            GameObject trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            GameObject trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            
+            // deuxièmes attaques
+            depart1= new  Vector2(-20, 0); 
+            depart2= new Vector2(-20, -5);
+            Vector2 depart3;
+            depart3 = new Vector2(-20, 5);
+        
+            // création de l'origine des lasers
+            point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
+            point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
+            GameObject point3 = Instantiate(startLazerPrefab, depart3, gameObject.transform.rotation);
+            
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            GameObject trait3;
+            trait3 = Instantiate(lazerPrefab, new Vector3(0, point3.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            Destroy(point3);
+            Destroy(trait3);
+            
+            // troisièmes attaques
+            depart1= new  Vector2(-20, -1); 
+            depart2= new Vector2(-20, -15);
+            depart3 = new Vector2(-20, 8);
+        
+            // création de l'origine des lasers
+            point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
+            point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
+            point3 = Instantiate(startLazerPrefab, depart3, gameObject.transform.rotation);
+            
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait3 = Instantiate(lazerPrefab, new Vector3(0, point3.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            Destroy(point3);
+            Destroy(trait3);
+            
+            // quatriemes attaques
+            depart1= new  Vector2(-20, 1); 
+            depart2= new Vector2(-20, -8);
+            depart3 = new Vector2(-20, 15);
+        
+            // création de l'origine des lasers
+            point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
+            point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
+            point3 = Instantiate(startLazerPrefab, depart3, gameObject.transform.rotation);
+            
+            yield return new WaitForSeconds(2);
+        
+            // création des lasers
+            trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait3 = Instantiate(lazerPrefab, new Vector3(0, point3.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+
+            yield return new WaitForSeconds(5);
+            
+            //suppression des lasers
+            Destroy(point1);
+            Destroy(trait1);
+            Destroy(point2);
+            Destroy(trait2);
+            Destroy(point3);
+            Destroy(trait3);
+        }
+    }
+    
+    IEnumerator SJKaleido()
+    {
+        float speed = 2f;
+        float offset = 2f;
+        for (int i = 0; i < 4; i += 1)
+        {
+            Vector3 origine = player.transform.position;
+            for (int j = 0; j < 6; j += 1)
+            {
+                GameObject point = Instantiate(ballPrefab,new Vector3(origine.x + offset * Mathf.Cos(Mathf.PI * j /3),origine.y + offset * Mathf.Sin(Mathf.PI*j /3), 0),gameObject.transform.rotation);
+                Vector3 direction = Vector3.Normalize(player.transform.position - point.transform.position);
+                point.GetComponent<Rigidbody2D>().velocity = direction;
+            }
+
+            yield return new WaitForSeconds(5);
+        }
+        
+        
     }
 }
