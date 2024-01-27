@@ -13,7 +13,9 @@ public class UIHealthBar : MonoBehaviour
     [SerializeField] private Image fillColor;
     [SerializeField] private AnimationCurve moveBarAnimationCurve;
 
-    private static float _capacity = 50f; //Max 100f
+    private float _capacity = 50f; //Max 100f
+    private float _tmpCapacity = 0f;
+    private bool _inTransition = false;
     private float _fill = 1f;
 
     #endregion
@@ -26,19 +28,30 @@ public class UIHealthBar : MonoBehaviour
         return _capacity;
     }
     
-    public void SetCapacity(float newCap)
+    public void ChangeCapacity(float delta)
     {
-        StartCoroutine(MoveBarCoroutine(newCap));
+        if (_inTransition)
+        {
+            _tmpCapacity += delta;
+        }
+        else
+        {
+            var newCap = _capacity + _tmpCapacity + delta;
+            _tmpCapacity = 0f;
+            StartCoroutine(MoveBarCoroutine(_capacity, newCap));
+        }
     }
 
-    private IEnumerator MoveBarCoroutine(float newCap)
+    private IEnumerator MoveBarCoroutine(float cap, float newCap)
     {
+        _inTransition = true;
+        
         var duration = moveBarAnimationCurve.keys[^1].time;
         var timeLeft = duration;
         
         while (timeLeft > 0)
         {
-            _fill = Mathf.Lerp(_capacity / 100f, newCap / 100f, duration - timeLeft);
+            _fill = Mathf.Lerp(cap / 100f, newCap / 100f, duration - timeLeft);
         
             var anchorMax = new Vector2(x: fillRectTransform.anchorMax.x, _fill);
             fillRectTransform.anchorMax = anchorMax;
@@ -50,6 +63,12 @@ public class UIHealthBar : MonoBehaviour
         }
 
         _capacity = newCap;
+        _inTransition = false;
+        
+        if (_tmpCapacity != 0)
+        {
+            ChangeCapacity(0f);
+        }
     }
     
     #endregion

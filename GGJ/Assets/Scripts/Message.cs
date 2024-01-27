@@ -32,7 +32,7 @@ public class Message : MonoBehaviour
         {
             _cursor += 1;
             letter = _msg.Substring(_cursor, 1);
-            uiHealthBarScript.SetCapacity(uiHealthBarScript.GetCapacity() + 10f); //On word is correctly written
+            uiHealthBarScript.ChangeCapacity(10f); //On word is correctly written
         }
         
         

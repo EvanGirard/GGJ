@@ -30,8 +30,7 @@ public class Player : MonoBehaviour
      */
     public void ApplyDamage(float damage)
     {
-        var newHp = uiHealthBarScript.GetCapacity() - damage;
-        uiHealthBarScript.SetCapacity(newHp);
+        uiHealthBarScript.ChangeCapacity(-damage);
 
         if (uiHealthBarScript.GetCapacity() <= 0)
         {

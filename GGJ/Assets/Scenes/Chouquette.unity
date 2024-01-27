@@ -1012,39 +1012,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].value
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].inSlope
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].inSlope
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].outSlope
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].inWeight
-      value: 0.33333334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].outSlope
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].outWeight
-      value: 0.33333334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].tangentMode
-      value: 34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].tangentMode
-      value: 34
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].weightedMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
