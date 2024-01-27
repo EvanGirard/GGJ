@@ -8,6 +8,8 @@ public class Message : MonoBehaviour
     #region Attributes
 
     [SerializeField] private TextMeshProUGUI msgToPrint;
+    [SerializeField] private Player playerScript;
+    
     private readonly string _startTag = "<color=red>";
     private readonly string _endTag = "</color>";
 
@@ -35,7 +37,7 @@ public class Message : MonoBehaviour
         //AZERTY Keybord
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
-            if (Input.GetKeyDown(key))
+            if (Input.GetKeyDown(key) && playerScript.GetCanMove())
             {
                 KeyCode newKey;
                 switch (key)

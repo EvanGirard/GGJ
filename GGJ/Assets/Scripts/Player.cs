@@ -9,12 +9,18 @@ public class Player : MonoBehaviour
     private CharacterController _characterController;
     
     private float _pv = 100f;
-    private float _speed = 5f;
+    private const float Speed = 5f;
+    private bool _canMove = true;
 
     #endregion
 
 
-    #region Other Functio,s
+    #region Other Functions
+
+    public bool GetCanMove()
+    {
+        return _canMove;
+    }
 
     public void ApplyDamage(float damage)
     {
@@ -22,7 +28,8 @@ public class Player : MonoBehaviour
 
         if (_pv <= 0)
         {
-            Debug.Log("Mort");
+            //anim
+            _canMove = false;
         }
     }
 
@@ -45,38 +52,46 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            ApplyDamage(50f);
+        }
+        
+        
         /*
          * Movements of the player
          */
-        
-        var position = transform.position;
-        
-        if (Input.GetKey(KeyCode.UpArrow)) // Forward
+        if (_canMove)
         {
-            position += _speed * Time.deltaTime * transform.up;
+            var position = transform.position;
+        
+            if (Input.GetKey(KeyCode.UpArrow)) // Forward
+            {
+                position += Speed * Time.deltaTime * transform.up;
+            }
+        
+            if (Input.GetKey(KeyCode.DownArrow)) // Backward
+            {
+                position -= Speed * Time.deltaTime * transform.up;
+            }
+        
+            if (Input.GetKey(KeyCode.RightArrow)) // Right
+            {
+                position += Speed * Time.deltaTime * transform.right;
+            }
+        
+            if (Input.GetKey(KeyCode.LeftArrow)) // Forward
+            {
+                position -= Speed * Time.deltaTime * transform.right;
+            }
+        
+            var newPosition = Vector3.MoveTowards(
+                transform.position,
+                position,
+                Speed * Time.deltaTime);
+        
+            _characterController.Move(newPosition - transform.position);
         }
-        
-        if (Input.GetKey(KeyCode.DownArrow)) // Backward
-        {
-            position -= _speed * Time.deltaTime * transform.up;
-        }
-        
-        if (Input.GetKey(KeyCode.RightArrow)) // Right
-        {
-            position += _speed * Time.deltaTime * transform.right;
-        }
-        
-        if (Input.GetKey(KeyCode.LeftArrow)) // Forward
-        {
-            position -= _speed * Time.deltaTime * transform.right;
-        }
-        
-        var newPosition = Vector3.MoveTowards(
-            transform.position,
-            position,
-            _speed * Time.deltaTime);
-        
-        _characterController.Move(newPosition - transform.position);
         
     }
 
