@@ -177,7 +177,12 @@ public class Message : MonoBehaviour
                 else
                 {
                     if (_cursor == 0) return;
-                    _cursor -= 1;
+                    if (!(letter == "." || letter == "ô" || letter == "ê" || letter == "û" || letter == "ï" ||
+                          letter == "?" || letter == "9"))
+                    {
+                        _cursor -= 1;
+                        if (_msg.Substring(_cursor, 1) == " ") _cursor -= 1;
+                    }
                 }
             }
         }
