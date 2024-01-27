@@ -36,12 +36,6 @@ public class Player : MonoBehaviour
     public void ApplyDamage(float damage)
     {
         uiHealthBarScript.ChangeCapacity(-damage);
-
-        if (uiHealthBarScript.GetCapacity() <= 0)
-        {
-            //anim
-            _isDead = true;
-        }
     }
 
     #endregion
@@ -63,6 +57,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (uiHealthBarScript.GetCapacity() <= 0)
+        {
+            //anim
+            _isDead = true;
+        }
+        
         /*
          * Movements of the player
          */

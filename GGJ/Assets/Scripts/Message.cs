@@ -66,7 +66,7 @@ public class Message : MonoBehaviour
         //AZERTY Keybord
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
-            if (Input.GetKeyDown(key) && !playerScript.GetIsDead())
+            if (Input.GetKeyDown(key))
             {
                 KeyCode newKey;
                 switch (key)
@@ -182,7 +182,7 @@ public class Message : MonoBehaviour
         /*
          * We print the message with the letter correctly answer in red
          */
-        msgToPrint.text = _startTag + _msg.Substring(0, _cursor) + _endTag + _msg.Substring(_cursor);
+        if (!playerScript.GetIsDead()) msgToPrint.text = _startTag + _msg.Substring(0, _cursor) + _endTag + _msg.Substring(_cursor);
     }
 
     #endregion

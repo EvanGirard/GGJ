@@ -34,8 +34,8 @@ public class UIHealthBar : MonoBehaviour
         }
         else
         {
-            if (_capacity > 100f) return;
-            if (_capacity < 0f) return;
+            if (_capacity >= 100f) return;
+            if (_capacity <= 0f) return;
             
             var newCap = _capacity + _tmpCapacity + delta;
             if (newCap >= 100f) newCap = 100f;
