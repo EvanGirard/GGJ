@@ -12,8 +12,9 @@ public class UIHealthBar : MonoBehaviour
     [SerializeField] private RectTransform fillRectTransform;
     [SerializeField] private Image fillColor;
     [SerializeField] private AnimationCurve moveBarAnimationCurve;
+    [SerializeField] private Player playerScript;
 
-    private float _capacity = 50f; //Max 100f
+    private float _capacity = 80f; //Max 100f
     private float _tmpCapacity = 0f;
     private bool _inTransition = false;
     private float _fill = 1f;
@@ -63,8 +64,12 @@ public class UIHealthBar : MonoBehaviour
         }
 
         _capacity = newCap;
-        _inTransition = false;
+        if (_capacity <= 0 || _capacity >= 100f)
+        {
+            playerScript.SetCanMove(false);
+        }
         
+        _inTransition = false;
         if (_tmpCapacity != 0)
         {
             ChangeCapacity(0f);
