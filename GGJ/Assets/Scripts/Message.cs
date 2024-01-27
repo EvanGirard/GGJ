@@ -16,6 +16,7 @@ public class Message : MonoBehaviour
 
     private string _msg;
     private int _cursor = 0;
+    private bool _finalSentence = false;
 
     #endregion
 
@@ -29,11 +30,26 @@ public class Message : MonoBehaviour
 
     private void Update()
     {
-        if (_cursor == _msg.Length)
+        if (uiHealthBarScript.GetCapacity() >= 100 && !_finalSentence)
         {
-            _msg = MsgData.GetSentence();
+            _finalSentence = true;
+            _msg = MsgData.GetBossSentence();
             _cursor = 0;
         }
+        if (_cursor == _msg.Length)
+        {
+            if (_finalSentence)
+            {
+                _msg = MsgData.GetBossSentence();
+                _cursor = 0; 
+            }
+            else
+            {
+                _msg = MsgData.GetSentence();
+                _cursor = 0;
+            }
+        }
+        
         
         
         var letter = _msg.Substring(_cursor, 1);
@@ -50,7 +66,7 @@ public class Message : MonoBehaviour
         //AZERTY Keybord
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
-            if (Input.GetKeyDown(key) && playerScript.GetCanMove())
+            if (Input.GetKeyDown(key) && !playerScript.GetIsDead())
             {
                 KeyCode newKey;
                 switch (key)
@@ -148,10 +164,12 @@ public class Message : MonoBehaviour
                 {
                     keyString = "9";
                 }
+                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift))
+                    && Input.GetKey(KeyCode.Comma)) //.
+                {
+                    keyString = ".";
+                }
                 
-                
-                Debug.Log(keyString);
-                Debug.Log(letter.ToUpper());
                 if (keyString == letter.ToUpper())
                 {
                     _cursor += 1;   

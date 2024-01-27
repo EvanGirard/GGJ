@@ -10,21 +10,26 @@ public class Player : MonoBehaviour
     private CharacterController _characterController;
     
     private const float Speed = 5f;
-    private bool _canMove = true;
+    private static bool _canMove = true;
+    private bool _isDead = false;
 
     #endregion
 
 
     #region Other Functions
 
-    /**
-     * Getter for _canMove boolean
-     */
-    public bool GetCanMove()
+    public bool GetIsDead()
     {
-        return _canMove;
+        return _isDead;
+    }
+    
+    
+    public void SetCanMove(bool state)
+    {
+        _canMove = state;
     }
 
+    
     /**
      * Function called when the player is hit by a projectile
      */
@@ -35,7 +40,7 @@ public class Player : MonoBehaviour
         if (uiHealthBarScript.GetCapacity() <= 0)
         {
             //anim
-            _canMove = false;
+            _isDead = true;
         }
     }
 
