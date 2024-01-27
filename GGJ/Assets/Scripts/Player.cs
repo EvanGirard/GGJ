@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
     #region Attributes
 
+    [SerializeField] private UIHealthBar uiHealthBarScript;
     private CharacterController _characterController;
     
-    private float _pv = 100f;
     private const float Speed = 5f;
     private bool _canMove = true;
 
@@ -17,16 +17,23 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
+    /**
+     * Getter for _canMove boolean
+     */
     public bool GetCanMove()
     {
         return _canMove;
     }
 
+    /**
+     * Function called when the player is hit by a projectile
+     */
     public void ApplyDamage(float damage)
     {
-        _pv -= damage;
+        var newHp = uiHealthBarScript.GetCapacity() - damage;
+        uiHealthBarScript.SetCapacity(newHp);
 
-        if (_pv <= 0)
+        if (uiHealthBarScript.GetCapacity() <= 0)
         {
             //anim
             _canMove = false;
@@ -52,9 +59,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // POUR LE DEBUG ça
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            ApplyDamage(50f);
+            ApplyDamage(20f);
         }
         
         

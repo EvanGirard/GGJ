@@ -301,6 +301,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &634273985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+  m_PrefabInstance: {fileID: 7655628378562220629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce93dd422a952c42acafcbc4c91f6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &666992769
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   msgToPrint: {fileID: 1332406311}
-  playerScript: {fileID: 0}
+  playerScript: {fileID: 1968199076}
+  uiHealthBarScript: {fileID: 634273985}
 --- !u!4 &666992771
 Transform:
   m_ObjectHideFlags: 0
@@ -752,6 +764,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1731651267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4667731724974611763, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+  m_PrefabInstance: {fileID: 7655628378562220629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1968199073
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc26f889b2ac2ef41945df32cde8d2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiHealthBarScript: {fileID: 634273985}
 --- !u!143 &1968199077
 CharacterController:
   m_ObjectHideFlags: 0
@@ -969,6 +993,58 @@ PrefabInstance:
     - target: {fileID: 6551519397750788447, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: m_Name
       value: UIPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: fillColor
+      value: 
+      objectReference: {fileID: 1731651267}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].value
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].inSlope
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].inSlope
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].outSlope
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].outSlope
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: moveBarAnimationCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -9,11 +9,12 @@ public class Message : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI msgToPrint;
     [SerializeField] private Player playerScript;
+    [SerializeField] private UIHealthBar uiHealthBarScript;
     
     private readonly string _startTag = "<color=red>";
     private readonly string _endTag = "</color>";
 
-    private string _msg = "û ô ê";
+    private string _msg = "Ceci est un TEst Pour voir si ça fonctionne bien";
     private int _cursor = 0;
 
     #endregion
@@ -31,6 +32,7 @@ public class Message : MonoBehaviour
         {
             _cursor += 1;
             letter = _msg.Substring(_cursor, 1);
+            uiHealthBarScript.SetCapacity(uiHealthBarScript.GetCapacity() + 10f); //On word is correctly written
         }
         
         
@@ -77,17 +79,20 @@ public class Message : MonoBehaviour
                     case("Period"): //;
                         keyString = ";";
                         break;
-                    case ("Alpha4"): //'
-                        keyString = "'";
-                        break;
                     case("Alpha0"): //à
                         keyString = "À";
                         break;
                     case("Alpha2"): //à
-                        keyString = "é";
+                        keyString = "É";
+                        break;
+                    case ("Alpha4"): //'
+                        keyString = "'";
                         break;
                     case("Alpha7"): //à
-                        keyString = "è";
+                        keyString = "È";
+                        break;
+                    case("Alpha9"): //ç
+                        keyString = "Ç";
                         break;
                     case("Slash"): //!
                         keyString = "!";
@@ -124,7 +129,6 @@ public class Message : MonoBehaviour
                 {
                     keyString = "Ê";
                 }
-                
                 
                 
                 if (keyString == letter.ToUpper())
