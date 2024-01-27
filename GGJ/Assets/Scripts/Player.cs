@@ -16,17 +16,11 @@ public class Player : MonoBehaviour
 
     #region Other Functio,s
 
-    public float GetPv()
+    public void ApplyDamage(float damage)
     {
-        return _pv;
-    }
+        _pv -= damage;
 
-
-    public void SetPv(float pv)
-    {
-        _pv = pv;
-
-        if (_pv <= 0f)
+        if (_pv <= 0)
         {
             Debug.Log("Mort");
         }
