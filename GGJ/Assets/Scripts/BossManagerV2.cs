@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,6 +26,33 @@ public class BossManagerV2 : MonoBehaviour
         }
     }
 
+    IEnumerator SJKaleido()
+    {
+        float speed = 2f;
+        float offset = 2f;
+        for (int i = 0; i < 4; i += 1)
+        {
+            Vector3 origine = _player.transform.position;
+            for (int j = 0; j < 6; j += 1)
+            {
+                GameObject point = Instantiate(projectilePoint,new Vector3(origine.x + offset * Mathf.Cos(Mathf.PI*i /8),origine.y + offset * Mathf.Sin(Mathf.PI*i /8)),gameObject.transform.rotation);
+                Vector3 direction = Vector3.Normalize(_player.transform.position - gameObject.transform.position);
+                point.GetComponent<Rigidbody2D>().velocity = direction;
+                
+            }
+
+            yield return new WaitForSeconds(10);
+        }
+        
+        
+    }
+    
+    void PaternKaleido()
+    {
+        StartCoroutine(SJKaleido());
+    }
+
+    
     IEnumerator GBlaster()
     {
         for (int i = 0; i < 2; i += 1)
