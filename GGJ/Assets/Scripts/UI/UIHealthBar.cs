@@ -14,7 +14,7 @@ public class UIHealthBar : MonoBehaviour
     [SerializeField] private AnimationCurve moveBarAnimationCurve;
     [SerializeField] private Player playerScript;
 
-    private float _capacity = 80f; //Max 100f
+    private float _capacity = 50f; //Max 100f
     private float _tmpCapacity = 0f;
     private bool _inTransition = false;
     private float _fill = 1f;
@@ -37,7 +37,13 @@ public class UIHealthBar : MonoBehaviour
         }
         else
         {
+            if (_capacity > 100f) return;
+            if (_capacity < 0f) return;
+            
             var newCap = _capacity + _tmpCapacity + delta;
+            if (newCap >= 100f) newCap = 100f;
+            if (newCap <= 0f) newCap = 0f;
+            
             _tmpCapacity = 0f;
             StartCoroutine(MoveBarCoroutine(_capacity, newCap));
         }
