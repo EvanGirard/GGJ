@@ -14,7 +14,7 @@ public class Message : MonoBehaviour
     private readonly string _startTag = "<color=red>";
     private readonly string _endTag = "</color>";
 
-    private string _msg = "Ceci est un TEst Pour voir si ça fonctionne bien";
+    private string _msg;
     private int _cursor = 0;
 
     #endregion
@@ -22,10 +22,21 @@ public class Message : MonoBehaviour
 
     #region Unity Event Functions
 
+    private void Start()
+    {
+        _msg = MsgData.GetSentence();
+    }
+
     private void Update()
     {
-        var letter = _msg.Substring(_cursor, 1);
+        if (_cursor == _msg.Length)
+        {
+            _msg = MsgData.GetSentence();
+            _cursor = 0;
+        }
         
+        
+        var letter = _msg.Substring(_cursor, 1);
         
         //The player doesn't have to wright spaces
         if (letter == " ") 
@@ -88,6 +99,9 @@ public class Message : MonoBehaviour
                     case ("Alpha4"): //'
                         keyString = "'";
                         break;
+                    case ("Alpha6"): //-
+                        keyString = "-";
+                        break;
                     case("Alpha7"): //à
                         keyString = "È";
                         break;
@@ -129,8 +143,15 @@ public class Message : MonoBehaviour
                 {
                     keyString = "Ê";
                 }
+                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift))
+                    && Input.GetKey(KeyCode.Alpha9)) //9
+                {
+                    keyString = "9";
+                }
                 
                 
+                Debug.Log(keyString);
+                Debug.Log(letter.ToUpper());
                 if (keyString == letter.ToUpper())
                 {
                     _cursor += 1;   
