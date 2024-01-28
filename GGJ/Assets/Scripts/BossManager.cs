@@ -14,6 +14,9 @@ public class BossManager : MonoBehaviour
     [SerializeField] GameObject lazerPrefab;
     [SerializeField] GameObject startLazerPrefab;
     [SerializeField] GameObject ballPrefab;
+    [SerializeField] GameObject bigBallPrefab;
+    [SerializeField] GameObject startZI;
+    [SerializeField] private UIHealthBar uiHealthBarScript;
     
     //son
     private AudioSource bossAudioSource;
@@ -127,6 +130,7 @@ public class BossManager : MonoBehaviour
 
         if (_variationTime >= 2f && !_isAttacking)
         {
+            _isAttacking = true;
             int newpattern = RandomPatern();
             while (newpattern == oldpattern)
             {
@@ -138,18 +142,62 @@ public class BossManager : MonoBehaviour
             {
                 case 0 :
                     DeathKaleidoscope();
+                    if (uiHealthBarScript.GetCapacity() >= 70)
+                    {
+                        StartCoroutine(ZoneInterdite(20f));
+                    }
                     break;
                 case 1 :
                     DeathBlasters();
+                    if (uiHealthBarScript.GetCapacity() >= 70)
+                    {
+                        if (Random.Range(0f, 2f) >= 1f)
+                        {
+                            StartCoroutine(ZoneInterdite(78f));
+                        }
+                        else
+                        {
+                            if (Random.Range(0f, 2f) >= 1f)
+                            {
+                                StartCoroutine(ZoneExlusive(78f, 1));
+                            }
+                            else
+                            {
+                                StartCoroutine(ZoneExlusive(78f, 0));
+                            }
+                        }
+                    }
                     break;
                 case 2 :
                     DeathPath();
                     break;
                 case 3 :
                     DeathCone();
+                    if (uiHealthBarScript.GetCapacity() >= 70)
+                    {
+                        if (Random.Range(0f, 2f) >= 1f)
+                        {
+                            StartCoroutine(ZoneInterdite(15f));
+                        }
+                        else
+                        {
+                            if (Random.Range(0f, 2f) >= 1f)
+                            {
+                                StartCoroutine(ZoneExlusive(15f, 1));
+                            }
+                            else
+                            {
+                                StartCoroutine(ZoneExlusive(15f, 0));
+                            }
+                        }
+                    }
                     break;
                 default :
                     DeathWheel();
+                    if (uiHealthBarScript.GetCapacity() >= 70)
+                    {
+                        StartCoroutine(ZoneInterdite(18f));
+                    }
                     break;
             }
         }
@@ -166,6 +214,61 @@ public class BossManager : MonoBehaviour
                 _isMoving = false;
             }
         }
+    }
+    
+    private IEnumerator ZoneInterdite(float duration)
+    {
+        GameObject point1 = Instantiate(bigBallPrefab, new Vector3(5, 3, 0), gameObject.transform.rotation);
+        GameObject point2 = Instantiate(bigBallPrefab, new Vector3(-5, 3, 0), gameObject.transform.rotation);
+        GameObject point3 = Instantiate(bigBallPrefab, new Vector3(5, -3, 0), gameObject.transform.rotation);
+        GameObject point4 = Instantiate(bigBallPrefab, new Vector3(-5, -3, 0), gameObject.transform.rotation);
+        
+        yield return new WaitForSeconds(2f);
+        
+        Destroy(point1);
+        Destroy(point2);
+        Destroy(point3);
+        Destroy(point4);
+        
+        GameObject zone1 = Instantiate(startZI, new Vector3(5, 3, 0), gameObject.transform.rotation);
+        GameObject zone2 = Instantiate(startZI, new Vector3(-5, 3, 0), gameObject.transform.rotation);
+        GameObject zone3 = Instantiate(startZI, new Vector3(5, -3, 0), gameObject.transform.rotation);
+        GameObject zone4 = Instantiate(startZI, new Vector3(-5, -3, 0), gameObject.transform.rotation);
+        
+        yield return new WaitForSeconds(duration);
+        
+        Destroy(zone1);
+        Destroy(zone2);
+        Destroy(zone3);
+        Destroy(zone4);
+    }
+
+    private IEnumerator ZoneExlusive(float duration, int bord)
+    {
+        Vector2 depart;
+        if (bord == 0)
+        {
+            depart = new Vector2(-20, 20);
+        }
+
+        else
+        {
+            depart = new Vector2(20, 20);
+        }
+
+        // création de l'origine du laser
+        GameObject point = Instantiate(startLazerPrefab, depart, gameObject.transform.rotation);
+                        
+        yield return new WaitForSeconds(2);
+                    
+        // création du lasers
+        GameObject trait = Instantiate(lazerPrefab, new Vector3(0, point.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 1, 0)));
+                        
+        yield return new WaitForSeconds(duration);
+                        
+        //suppression du laser
+        Destroy(point);
+        Destroy(trait);
     }
     private IEnumerator DestroyInSeconds(float cooldown)
     {
