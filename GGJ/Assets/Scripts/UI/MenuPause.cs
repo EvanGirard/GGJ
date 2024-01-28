@@ -9,6 +9,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private GameObject pauseWindow;
     [SerializeField] private GameObject instructionsWindow;
     [SerializeField] private GameObject controlsWindow;
+    [SerializeField] private GameObject optionsWindow;
     
     #endregion
 
@@ -52,10 +53,18 @@ public class MenuPause : MonoBehaviour
     }
     
     
+    public void Options()
+    {
+        pauseWindow.SetActive(false);
+        optionsWindow.SetActive(true);
+    }
+    
+    
     public void Back() //To go back to the pause menu
     {
         instructionsWindow.SetActive(false);
         controlsWindow.SetActive(false);
+        optionsWindow.SetActive(false);
         pauseWindow.SetActive(true);
     }
     
