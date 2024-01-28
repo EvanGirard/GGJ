@@ -9,6 +9,7 @@ public class Message : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI msgToPrint;
     [SerializeField] private Player playerScript;
+    [SerializeField] private GameObject timer;
     [SerializeField] private UIHealthBar uiHealthBarScript;
     
     private readonly string _startTag = "<color=red>";
@@ -34,6 +35,7 @@ public class Message : MonoBehaviour
         {
             _finalSentence = true;
             _msg = MsgData.GetBossSentence();
+            timer.SetActive(true);
             _cursor = 0;
         }
         if (_cursor == _msg.Length)
