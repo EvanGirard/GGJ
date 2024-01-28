@@ -15,6 +15,14 @@ public class BossManager : MonoBehaviour
     [SerializeField] GameObject startLazerPrefab;
     [SerializeField] GameObject ballPrefab;
     
+    //son
+    [SerializeField] private AudioSource bossAudioSource;
+    [SerializeField] private AudioClip bouleAudio;
+    [SerializeField] private AudioClip lasercastAudio;
+    [SerializeField] private AudioClip laserAudio;
+    [SerializeField] private AudioClip laserContinueAudio;
+    [SerializeField] private AudioClip laserEndAudio;
+    
     public List<GameObject> LazerList = new List<GameObject>();
     public List<GameObject> StartLazerList = new List<GameObject>();
     
@@ -35,6 +43,7 @@ public class BossManager : MonoBehaviour
     
     void Awake()
     {
+        bossAudioSource = GetComponent<AudioSource>();
         if (instance != null && instance != this)
             Destroy(gameObject);    // Suppression d'une instance pr�c�dente (s�curit�...s�curit�...)
 
@@ -177,6 +186,7 @@ public class BossManager : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
         
+        bossAudioSource.PlayOneShot(laserAudio);
         GameObject newLazer;
         for (int i = 0; i < 2; i += 1)
         {
@@ -196,7 +206,8 @@ public class BossManager : MonoBehaviour
         for (int i = 0; i < n; i += 1)
         {
             yield return new WaitForSeconds(f);
-
+            
+            bossAudioSource.PlayOneShot(bouleAudio);
             GameObject ball = Instantiate(ballPrefab, gameObject.transform.position, gameObject.transform.rotation);
             ball.GetComponent<Rigidbody2D>().velocity = direction;
 
@@ -220,13 +231,15 @@ public class BossManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         
         // création des lasers
+        bossAudioSource.PlayOneShot(lasercastAudio);
         GameObject trait1 = Instantiate(lazerPrefab, new Vector3(point1.transform.position.x, point1.transform.position.y / 2, 0), gameObject.transform.rotation);
         GameObject trait2 = Instantiate(lazerPrefab, new Vector3(point2.transform.position.x, point2.transform.position.y / 2, 0), gameObject.transform.rotation);
     
         //mouvement des lasers 
+        bossAudioSource.PlayOneShot(laserAudio);
         trait1.GetComponent<Rigidbody2D>().velocity = new Vector3(-speed , 0, 0);
         trait2.GetComponent<Rigidbody2D>().velocity = new Vector3(speed , 0, 0);
-
+        bossAudioSource.PlayOneShot(laserContinueAudio);
         while (trait1.transform.position.x >= 5f)
         {
             yield return new WaitForFixedUpdate();
@@ -237,6 +250,7 @@ public class BossManager : MonoBehaviour
         
         yield return new WaitForSeconds(7);
         
+        bossAudioSource.PlayOneShot(laserEndAudio);
         Destroy(point1);
         Destroy(trait1);
         Destroy(point2);
@@ -251,7 +265,7 @@ public class BossManager : MonoBehaviour
         for (int i = 0; i < 8; i += 1)
         {
             yield return new WaitForSeconds(1.5f);
-
+            bossAudioSource.PlayOneShot(bouleAudio);
             GameObject ball;
             if (i % 2 == 0)
             {
@@ -283,18 +297,21 @@ public class BossManager : MonoBehaviour
             float speed=10f;
         
             // création de l'origine des lasers
+            bossAudioSource.PlayOneShot(lasercastAudio);
             GameObject point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
             GameObject point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
             
             yield return new WaitForSeconds(2);
         
             // création des lasers
+            bossAudioSource.PlayOneShot(laserAudio);
             GameObject trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
             GameObject trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-            
+            bossAudioSource.PlayOneShot(laserContinueAudio);
             yield return new WaitForSeconds(5);
             
             //suppression des lasers
+            bossAudioSource.PlayOneShot(laserEndAudio);
             Destroy(point1);
             Destroy(trait1);
             Destroy(point2);
@@ -307,6 +324,7 @@ public class BossManager : MonoBehaviour
             depart3 = new Vector2(-20, 5);
         
             // création de l'origine des lasers
+            bossAudioSource.PlayOneShot(lasercastAudio);
             point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
             point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
             GameObject point3 = Instantiate(startLazerPrefab, depart3, gameObject.transform.rotation);
@@ -314,14 +332,17 @@ public class BossManager : MonoBehaviour
             yield return new WaitForSeconds(2);
         
             // création des lasers
+            bossAudioSource.PlayOneShot(laserAudio);
             trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
             trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
             GameObject trait3;
             trait3 = Instantiate(lazerPrefab, new Vector3(0, point3.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            bossAudioSource.PlayOneShot(laserContinueAudio);
             
             yield return new WaitForSeconds(5);
             
             //suppression des lasers
+            bossAudioSource.PlayOneShot(laserEndAudio);
             Destroy(point1);
             Destroy(trait1);
             Destroy(point2);
@@ -335,6 +356,7 @@ public class BossManager : MonoBehaviour
             depart3 = new Vector2(-20, 8);
         
             // création de l'origine des lasers
+            bossAudioSource.PlayOneShot(lasercastAudio);
             point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
             point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
             point3 = Instantiate(startLazerPrefab, depart3, gameObject.transform.rotation);
@@ -342,13 +364,16 @@ public class BossManager : MonoBehaviour
             yield return new WaitForSeconds(2);
         
             // création des lasers
+            bossAudioSource.PlayOneShot(laserAudio);
             trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
             trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
             trait3 = Instantiate(lazerPrefab, new Vector3(0, point3.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            bossAudioSource.PlayOneShot(laserContinueAudio);
             
             yield return new WaitForSeconds(5);
             
             //suppression des lasers
+            bossAudioSource.PlayOneShot(laserEndAudio);
             Destroy(point1);
             Destroy(trait1);
             Destroy(point2);
@@ -362,6 +387,7 @@ public class BossManager : MonoBehaviour
             depart3 = new Vector2(-20, 15);
         
             // création de l'origine des lasers
+            bossAudioSource.PlayOneShot(lasercastAudio);
             point1 = Instantiate(startLazerPrefab, depart1, gameObject.transform.rotation);
             point2 = Instantiate(startLazerPrefab, depart2, gameObject.transform.rotation);
             point3 = Instantiate(startLazerPrefab, depart3, gameObject.transform.rotation);
@@ -369,13 +395,16 @@ public class BossManager : MonoBehaviour
             yield return new WaitForSeconds(2);
         
             // création des lasers
+            bossAudioSource.PlayOneShot(laserAudio);
             trait1 = Instantiate(lazerPrefab, new Vector3(0, point1.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
             trait2 = Instantiate(lazerPrefab, new Vector3(0, point2.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
             trait3 = Instantiate(lazerPrefab, new Vector3(0, point3.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-
+            bossAudioSource.PlayOneShot(laserContinueAudio);
+            
             yield return new WaitForSeconds(5);
             
             //suppression des lasers
+            bossAudioSource.PlayOneShot(laserEndAudio);
             Destroy(point1);
             Destroy(trait1);
             Destroy(point2);
@@ -394,6 +423,7 @@ public class BossManager : MonoBehaviour
         float offset = 2f;
         for (int i = 0; i < 4; i += 1)
         {
+            bossAudioSource.PlayOneShot(bouleAudio);
             Vector3 origine = player.transform.position;
             for (int j = 0; j < 6; j += 1)
             {
