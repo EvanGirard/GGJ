@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     [SerializeField] private UIHealthBar uiHealthBarScript;
     private CharacterController _characterController;
     
+    //son
+    [SerializeField] private AudioClip deathSound=null;
+    [SerializeField] private AudioClip damagesound;
+    private AudioSource _playerAudioSource;
+    
     // Animations
     private Animator _animator;
     private int IsWalkingID;
@@ -56,6 +61,7 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         
+        _playerAudioSource = GetComponent<AudioSource>();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
 
@@ -67,7 +73,7 @@ public class Player : MonoBehaviour
     {
         if (uiHealthBarScript.GetCapacity() <= 0)
         {
-            //anim
+            _playerAudioSource.PlayOneShot(deathSound);
             _isDead = true;
         }
         
