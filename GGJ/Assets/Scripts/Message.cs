@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using TMPro;
-using UnityEditor.U2D.Aseprite;
 
 
 public class Message : MonoBehaviour
@@ -31,7 +30,7 @@ public class Message : MonoBehaviour
 
     private void Update()
     {
-        if (uiHealthBarScript.GetCapacity() >= 100 && !_finalSentence)
+        if (uiHealthBarScript.GetCapacity() >= 200 && !_finalSentence)
         {
             _finalSentence = true;
             _msg = MsgData.GetBossSentence();
@@ -60,7 +59,7 @@ public class Message : MonoBehaviour
         {
             _cursor += 1;
             letter = _msg.Substring(_cursor, 1);
-            uiHealthBarScript.ChangeCapacity(10f); //On word is correctly written
+            uiHealthBarScript.ChangeCapacity(5f); //On word is correctly written
         }
         
         

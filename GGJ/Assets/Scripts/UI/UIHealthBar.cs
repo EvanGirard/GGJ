@@ -10,7 +10,7 @@ public class UIHealthBar : MonoBehaviour
     [SerializeField] private AnimationCurve moveBarAnimationCurve;
     [SerializeField] private Player playerScript;
 
-    private float _capacity = 50f; //Max 100f
+    private float _capacity = 100f; //Max 200f
     private float _tmpCapacity = 0f;
     private bool _inTransition = false;
 
@@ -32,11 +32,11 @@ public class UIHealthBar : MonoBehaviour
         }
         else
         {
-            if (_capacity >= 100f) return;
+            if (_capacity >= 200f) return;
             if (_capacity <= 0f) return;
             
             var newCap = _capacity + _tmpCapacity + delta;
-            if (newCap >= 100f) newCap = 100f;
+            if (newCap >= 200f) newCap = 200f;
             if (newCap <= 0f) newCap = 0f;
             
             _tmpCapacity = 0f;
@@ -53,7 +53,7 @@ public class UIHealthBar : MonoBehaviour
         
         while (timeLeft > 0)
         {
-            fillImage.fillAmount = Mathf.Lerp(cap / 100f, newCap / 100f, duration - timeLeft);
+            fillImage.fillAmount = Mathf.Lerp(cap / 200f, newCap / 200f, duration - timeLeft);
             
             fillImage.color = Color.Lerp(Color.blue, Color.green, fillImage.fillAmount);
             
@@ -62,7 +62,7 @@ public class UIHealthBar : MonoBehaviour
         }
 
         _capacity = newCap;
-        if (_capacity <= 0 || _capacity >= 100f)
+        if (_capacity <= 0 || _capacity >= 200f)
         {
             playerScript.SetCanMove(false);
         }
@@ -82,7 +82,7 @@ public class UIHealthBar : MonoBehaviour
     
     protected void Start()
     {
-        fillImage.fillAmount = _capacity / 100f;
+        fillImage.fillAmount = _capacity / 200f;
         fillImage.color = Color.Lerp(Color.blue, Color.green, fillImage.fillAmount);
     }
 
