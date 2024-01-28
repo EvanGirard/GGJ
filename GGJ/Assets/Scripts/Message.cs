@@ -181,7 +181,9 @@ public class Message : MonoBehaviour
                 {
                     if (_cursor == 0) return;
                     if (!(letter == "." || letter == "ô" || letter == "ê" || letter == "û" || letter == "ï" ||
-                          letter == "?" || letter == "9"))
+                          letter == "?" || letter == "9" || 
+                        Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) ||
+                        Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)))
                     {
                         _cursor -= 1;
                         if (_msg.Substring(_cursor, 1) == " ") _cursor -= 1;
