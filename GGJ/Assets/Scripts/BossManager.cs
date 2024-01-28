@@ -93,7 +93,6 @@ public class BossManager : MonoBehaviour
         
         StartCoroutine(CreateBoulePath());
 
-        _variationTime = 3f;
     }
 
     private void DeathBlasters()
@@ -321,6 +320,7 @@ public class BossManager : MonoBehaviour
         
         _isAttacking = false;
         _variationTime = 0f;
+        _variationTime = 3f;
     }
     
     IEnumerator CouloirLaser()
