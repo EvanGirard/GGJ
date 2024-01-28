@@ -16,7 +16,7 @@ public class BossManager : MonoBehaviour
     [SerializeField] GameObject ballPrefab;
     
     //son
-    [SerializeField] private AudioSource bossAudioSource;
+    private AudioSource bossAudioSource;
     [SerializeField] private AudioClip bouleAudio;
     [SerializeField] private AudioClip lasercastAudio;
     [SerializeField] private AudioClip laserAudio;
