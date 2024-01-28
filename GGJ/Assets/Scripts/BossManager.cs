@@ -307,8 +307,8 @@ public class BossManager : MonoBehaviour
         float speed=2f;
         
         // création de l'origine des lasers
-        GameObject trait1 = Instantiate(lazerPrefab, new Vector3(6.2f, 0, 0), gameObject.transform.rotation);
-        GameObject trait2 = Instantiate(lazerPrefab, new Vector3(-6.2f, 0, 0), gameObject.transform.rotation);
+        GameObject trait1 = Instantiate(lazerPrefab, new Vector3(6.2f, 0, 0), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+        GameObject trait2 = Instantiate(lazerPrefab, new Vector3(-6.2f, 0, 0), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
         bossAudioSource.PlayOneShot(lasercastAudio);
         
         yield return new WaitForSeconds(2);
@@ -348,11 +348,11 @@ public class BossManager : MonoBehaviour
             GameObject ball;
             if (i % 2 == 0)
             {
-                ball = Instantiate(ballPrefab, gameObject.transform.position + 1f * Vector3.right, gameObject.transform.rotation);
+                ball = Instantiate(bigBallPrefab, gameObject.transform.position + 1f * Vector3.right, gameObject.transform.rotation);
             }
             else
             {
-                ball = Instantiate(ballPrefab, gameObject.transform.position - 1f * Vector3.right, gameObject.transform.rotation);
+                ball = Instantiate(bigBallPrefab, gameObject.transform.position - 1f * Vector3.right, gameObject.transform.rotation);
             }
             ball.GetComponent<Rigidbody2D>().velocity = Vector3.down;
         }
@@ -369,8 +369,8 @@ public class BossManager : MonoBehaviour
         
             // création de l'origine des lasers
             bossAudioSource.PlayOneShot(lasercastAudio);
-            GameObject trait1 = Instantiate(lazerPrefab, new Vector3(0, 4 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-            GameObject trait2 = Instantiate(lazerPrefab, new Vector3(0, -4 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            GameObject trait1 = Instantiate(lazerPrefab, new Vector3(0, 4 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
+            GameObject trait2 = Instantiate(lazerPrefab, new Vector3(0, -4 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
 
             yield return new WaitForSeconds(2);
         
@@ -388,10 +388,10 @@ public class BossManager : MonoBehaviour
             _animator.SetTrigger(IsAttackingID);
             // création de l'origine des lasers
             bossAudioSource.PlayOneShot(lasercastAudio);
-            trait1 = Instantiate(lazerPrefab, new Vector3(0, 0 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-            trait2 = Instantiate(lazerPrefab, new Vector3(0, -1.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait1 = Instantiate(lazerPrefab, new Vector3(0, 0 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
+            trait2 = Instantiate(lazerPrefab, new Vector3(0, -1.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
             GameObject trait3;
-            trait3 = Instantiate(lazerPrefab, new Vector3(0, 1.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait3 = Instantiate(lazerPrefab, new Vector3(0, 1.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
 
             yield return new WaitForSeconds(2);
         
@@ -411,9 +411,9 @@ public class BossManager : MonoBehaviour
             _animator.SetTrigger(IsAttackingID);
             // création de l'origine des lasers
             bossAudioSource.PlayOneShot(lasercastAudio);
-            trait1 = Instantiate(lazerPrefab, new Vector3(0, -4.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-            trait2 = Instantiate(lazerPrefab, new Vector3(0, -0.8f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-            trait3 = Instantiate(lazerPrefab, new Vector3(0, 2 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait1 = Instantiate(lazerPrefab, new Vector3(0, -4.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
+            trait2 = Instantiate(lazerPrefab, new Vector3(0, -0.8f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
+            trait3 = Instantiate(lazerPrefab, new Vector3(0, 2 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
 
             yield return new WaitForSeconds(2);
         
@@ -434,9 +434,9 @@ public class BossManager : MonoBehaviour
             
             // création de l'origine des lasers
             bossAudioSource.PlayOneShot(lasercastAudio);
-            trait1 = Instantiate(lazerPrefab, new Vector3(0, 4.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-            trait2 = Instantiate(lazerPrefab, new Vector3(0, 0.8f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
-            trait3 = Instantiate(lazerPrefab, new Vector3(0, 2 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
+            trait1 = Instantiate(lazerPrefab, new Vector3(0, 4.5f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
+            trait2 = Instantiate(lazerPrefab, new Vector3(0, 0.8f ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
+            trait3 = Instantiate(lazerPrefab, new Vector3(0, 2 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)));
 
             yield return new WaitForSeconds(2);
         
