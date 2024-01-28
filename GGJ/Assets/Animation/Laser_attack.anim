@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: attack
+  m_Name: Laser_attack
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1278656230, guid: 5e03465df810aa64faa9682a50d6f2e7, type: 3}
+      value: {fileID: 1342247160, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
+    - time: 0.16666667
+      value: {fileID: 1323942991, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
+    - time: 0.33333334
+      value: {fileID: 489316533, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
+    - time: 0.5
+      value: {fileID: 489316533, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1278656230, guid: 5e03465df810aa64faa9682a50d6f2e7, type: 3}
+    - {fileID: 1342247160, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
+    - {fileID: 1323942991, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
+    - {fileID: 489316533, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
+    - {fileID: 489316533, guid: 181c45a1c9067b641aeec40bab8707c9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
