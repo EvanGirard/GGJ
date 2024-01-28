@@ -70,8 +70,6 @@ public class BossManager : MonoBehaviour
     private void DeathWheel()
     {
         StartCoroutine(CreateDW());
-        
-        StartCoroutine(DestroyInSeconds(2f));
     }
 
     private void DeathCone()
@@ -217,6 +215,7 @@ public class BossManager : MonoBehaviour
     
     private IEnumerator ZoneInterdite(float duration)
     {
+        bossAudioSource.PlayOneShot(lasercastAudio);
         GameObject point1 = Instantiate(bigBallPrefab, new Vector3(5, 3, 0), gameObject.transform.rotation);
         GameObject point2 = Instantiate(bigBallPrefab, new Vector3(-5, 3, 0), gameObject.transform.rotation);
         GameObject point3 = Instantiate(bigBallPrefab, new Vector3(5, -3, 0), gameObject.transform.rotation);
@@ -229,6 +228,7 @@ public class BossManager : MonoBehaviour
         Destroy(point3);
         Destroy(point4);
         
+        bossAudioSource.PlayOneShot(bouleAudio);
         GameObject zone1 = Instantiate(startZI, new Vector3(5, 3, 0), gameObject.transform.rotation);
         GameObject zone2 = Instantiate(startZI, new Vector3(-5, 3, 0), gameObject.transform.rotation);
         GameObject zone3 = Instantiate(startZI, new Vector3(5, -3, 0), gameObject.transform.rotation);
@@ -256,52 +256,47 @@ public class BossManager : MonoBehaviour
         }
 
         // création de l'origine du laser
+        bossAudioSource.PlayOneShot(lasercastAudio);
         GameObject point = Instantiate(startLazerPrefab, depart, gameObject.transform.rotation);
                         
         yield return new WaitForSeconds(2);
                     
         // création du lasers
+        bossAudioSource.PlayOneShot(laserAudio);
         GameObject trait = Instantiate(lazerPrefab, new Vector3(0, point.transform.position.y ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 1, 0)));
                         
         yield return new WaitForSeconds(duration);
                         
         //suppression du laser
+        bossAudioSource.PlayOneShot(laserEndAudio);
         Destroy(point);
         Destroy(trait);
-    }
-    private IEnumerator DestroyInSeconds(float cooldown)
-    {
-        yield return new WaitForSeconds(cooldown);
-        
-        foreach(GameObject lazer in LazerList)
-        {
-            Destroy(lazer);
-        }
-
-        _isAttacking = false;
-        _variationTime = 0f;
     }
 
     private IEnumerator CreateDW()
     {
-        /*faire apparaître la préparation du lazer*/
+        bossAudioSource.PlayOneShot(lasercastAudio);
+        GameObject point = Instantiate(startLazerPrefab, new Vector3(0,0 ), gameObject.transform.rotation);
         
         yield return new WaitForSeconds(2f);
         
         bossAudioSource.PlayOneShot(laserAudio);
-        GameObject newLazer;
-        for (int i = 0; i < 2; i += 1)
-        {
-            newLazer = Instantiate(lazerPrefab, new Vector3(0,0,0), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(i, 1 - i, 0)) );
-            LazerList.Add(newLazer);
-        }
+        GameObject newLazer1 = Instantiate(lazerPrefab, new Vector3(0,0,0), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)) );
+        GameObject newLazer2 = Instantiate(lazerPrefab, new Vector3(0,0,0), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)) );
         
-        foreach(GameObject lazer in LazerList)
-        {
-            lazer.GetComponent<Rigidbody2D>().angularVelocity = 25;
-        }
-    }
+        newLazer1.GetComponent<Rigidbody2D>().angularVelocity = 25;
+        newLazer2.GetComponent<Rigidbody2D>().angularVelocity = 25;
+        
+        yield return new WaitForSeconds(2f);
+            
+        bossAudioSource.PlayOneShot(laserEndAudio);
+        Destroy(newLazer1);
+        Destroy(newLazer2);
+        Destroy(point);
     
+        _isAttacking = false;
+        _variationTime = 0f;
+        }
     
     private IEnumerator Create_nBoule(int n, float f, Vector3 direction, GameObject ballPrefab)
     {
