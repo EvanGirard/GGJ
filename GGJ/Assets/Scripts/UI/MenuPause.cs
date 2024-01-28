@@ -18,7 +18,7 @@ public class MenuPause : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Backslash)) //*
+        if (Input.GetKey(KeyCode.Backslash) || Input.GetKey(KeyCode.KeypadMultiply)) //*
         {
             Pause();
         }

@@ -100,6 +100,7 @@ public class BossManager : MonoBehaviour
     
     void Update()
     {
+        if (uiHealthBarScript.GetCapacity() >= 200f) _isAttacking = true;
         _variationTime += Time.deltaTime;
         
         
