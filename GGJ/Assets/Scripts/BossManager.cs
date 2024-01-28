@@ -8,6 +8,7 @@ public class BossManager : MonoBehaviour
     private bool _isMoving;
     private bool _isLeft = true;
     private int oldpattern = 4;
+    private bool _isAttacking = false;
 
     [SerializeField] GameObject player;
     [SerializeField] GameObject lazerPrefab;
@@ -115,7 +116,7 @@ public class BossManager : MonoBehaviour
             _isMoving = true;
         }
 
-        if (_variationTime >= 2f)
+        if (_variationTime >= 2f && !_isAttacking)
         {
             int newpattern = RandomPatern();
             while (newpattern == oldpattern)
@@ -128,23 +129,18 @@ public class BossManager : MonoBehaviour
             {
                 case 0 :
                     DeathKaleidoscope();
-                    _variationTime = 0f;
                     break;
                 case 1 :
                     DeathBlasters();
-                    _variationTime = 0f;
                     break;
                 case 2 :
                     DeathPath();
-                    _variationTime = 0f;
                     break;
                 case 3 :
                     DeathCone();
-                    _variationTime = 0f;
                     break;
                 default :
                     DeathWheel();
-                    _variationTime = 0f;
                     break;
             }
         }
@@ -170,6 +166,9 @@ public class BossManager : MonoBehaviour
         {
             Destroy(lazer);
         }
+
+        _isAttacking = false;
+        _variationTime = 0f;
     }
 
     private IEnumerator CreateDW()
@@ -205,6 +204,9 @@ public class BossManager : MonoBehaviour
 
             ball.GetComponent<SpriteRenderer>().enabled = true;
         }
+        
+        _isAttacking = false;
+        _variationTime = 0f;
     }
     
     IEnumerator CouloirLaser()
@@ -239,6 +241,7 @@ public class BossManager : MonoBehaviour
         Destroy(trait1);
         Destroy(point2);
         Destroy(trait2);
+        
     }
 
     IEnumerator CreateBoulePath()
@@ -264,6 +267,9 @@ public class BossManager : MonoBehaviour
 
             ball.GetComponent<SpriteRenderer>().enabled = true;
         }
+        
+        _isAttacking = false;
+        _variationTime = 0f;
     }
     
     IEnumerator GBlaster()
@@ -377,6 +383,9 @@ public class BossManager : MonoBehaviour
             Destroy(point3);
             Destroy(trait3);
         }
+        
+        _isAttacking = false;
+        _variationTime = 0f;
     }
     
     IEnumerator SJKaleido()
@@ -396,6 +405,7 @@ public class BossManager : MonoBehaviour
             yield return new WaitForSeconds(5);
         }
         
-        
+        _isAttacking = false;
+        _variationTime = 0f;
     }
 }
