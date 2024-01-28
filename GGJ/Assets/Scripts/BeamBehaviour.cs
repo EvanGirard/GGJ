@@ -11,7 +11,6 @@ public class BeamBehaviour : MonoBehaviour
         {
             playerScript.ApplyDamage(5f);
         }
-      
     }
 }
 

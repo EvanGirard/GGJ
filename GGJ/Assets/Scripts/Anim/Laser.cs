@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ChargedBall : MonoBehaviour
+public class Laser : MonoBehaviour
 {
-    private CircleCollider2D _collider2D;
+    private BoxCollider2D _collider2D;
     private Animator _animator;
     private int IsChargedID;
     private float _spawnTime;
@@ -10,7 +10,7 @@ public class ChargedBall : MonoBehaviour
 
     private void Awake()
     {
-        _collider2D = GetComponent<CircleCollider2D>();
+        _collider2D = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
         _collider2D.gameObject.SetActive(false);
 
