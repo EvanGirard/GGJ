@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
         {
             _playerAudioSource.PlayOneShot(deathSound);
             _isDead = true;
+            EndGame.gameOver = true;
         }
         
         /*
