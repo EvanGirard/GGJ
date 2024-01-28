@@ -371,8 +371,6 @@ RectTransform:
   - {fileID: 1769739882}
   - {fileID: 1354797990}
   - {fileID: 535379658}
-  - {fileID: 1425326753}
-  - {fileID: 1026260643}
   - {fileID: 429913094}
   - {fileID: 1735667956}
   - {fileID: 1622689445}
@@ -912,7 +910,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1354797991}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -2196,6 +2194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 535379658}
+  - component: {fileID: 535379659}
   m_Layer: 5
   m_Name: Option
   m_TagString: Untagged
@@ -2225,6 +2224,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &535379659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535379657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c5d1d978f3cb444b7665e365580692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &547856286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,11 +3879,11 @@ Transform:
   m_GameObject: {fileID: 1026260640}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4433365, y: 58.854893, z: -1.8259239}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalPosition: {x: 309.59726, y: 220.83325, z: -1.4219383}
+  m_LocalScale: {x: 0.5840625, y: 0.5840625, z: 0.5840625}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 106424915}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1032216737
 GameObject:
@@ -4102,7 +4113,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.5
+  m_fontSize: 35.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5326,7 +5337,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 535379659}
         m_TargetAssemblyTypeName: Option, Assembly-CSharp
         m_MethodName: SetFullscreenMode
         m_Mode: 0
@@ -5678,11 +5689,11 @@ Transform:
   m_GameObject: {fileID: 1425326751}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4433365, y: 58.854893, z: -1.8259239}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalPosition: {x: 309.59726, y: 220.83325, z: -1.4219383}
+  m_LocalScale: {x: 0.5840625, y: 0.5840625, z: 0.5840625}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 106424915}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1430815891
 GameObject:
@@ -7336,7 +7347,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1354797991}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
@@ -8248,7 +8259,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 535379659}
         m_TargetAssemblyTypeName: Option, Assembly-CSharp
         m_MethodName: SetScreenSize
         m_Mode: 0
@@ -9274,3 +9285,5 @@ SceneRoots:
   - {fileID: 2030449166}
   - {fileID: 106424915}
   - {fileID: 611121988}
+  - {fileID: 1026260643}
+  - {fileID: 1425326753}
