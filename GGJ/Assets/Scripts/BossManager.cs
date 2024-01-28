@@ -5,10 +5,9 @@ using UnityEngine;
 public class BossManager : MonoBehaviour
 {
     private float _variationTime;
-    private int _random;
     private bool _isMoving;
     private bool _isLeft = true;
-    private bool _canAttack = true;
+    private int oldpattern = 4;
 
     [SerializeField] GameObject player;
     [SerializeField] GameObject lazerPrefab;
@@ -31,7 +30,6 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         gameObject.transform.position = new Vector3(-5, 4, 0);
-        DeathKaleidoscope();
     }
     
     void Awake()
@@ -47,11 +45,11 @@ public class BossManager : MonoBehaviour
 
     private int RandomPatern()
     {
-        float randf = Random.Range(0f, 10f);
-        while (randf >= 10f)
+        float randf = Random.Range(0f, 5f);
+        while (randf >= 5f)
         {
             //au cas ou on arrive sur la borne exterieur ce qui n'est pas pris en compte
-            randf = Random.Range(0f, 10f);
+            randf = Random.Range(0f, 5f);
         }
         return Mathf.FloorToInt(randf);
     }
@@ -97,8 +95,8 @@ public class BossManager : MonoBehaviour
     
     void Update()
     {
-        /*
         _variationTime += Time.deltaTime;
+        
         
         if (_variationTime >= 3f)
         {
@@ -115,7 +113,42 @@ public class BossManager : MonoBehaviour
             }
 
             _isMoving = true;
-        }*/
+        }
+
+        if (_variationTime >= 2f)
+        {
+            int newpattern = RandomPatern();
+            while (newpattern == oldpattern)
+            {
+                newpattern = RandomPatern();
+            }
+
+            oldpattern = newpattern;
+            switch (newpattern)
+            {
+                case 0 :
+                    DeathKaleidoscope();
+                    _variationTime = 0f;
+                    break;
+                case 1 :
+                    DeathBlasters();
+                    _variationTime = 0f;
+                    break;
+                case 2 :
+                    DeathPath();
+                    _variationTime = 0f;
+                    break;
+                case 3 :
+                    DeathCone();
+                    _variationTime = 0f;
+                    break;
+                default :
+                    DeathWheel();
+                    _variationTime = 0f;
+                    break;
+            }
+        }
+        
 
         if (_isMoving)
         {
@@ -157,18 +190,7 @@ public class BossManager : MonoBehaviour
             lazer.GetComponent<Rigidbody2D>().angularVelocity = 25;
         }
     }
-
-    private IEnumerator CreateBoule(float f, Vector3 direction, GameObject ballPrefab)
-    {
-        yield return new WaitForSeconds(f);
-
-        GameObject ball = Instantiate(ballPrefab, gameObject.transform.position, gameObject.transform.rotation);
-        ball.GetComponent<Rigidbody2D>().velocity = direction;
-        
-        yield return new WaitForSeconds(0.1f);
-
-        ball.GetComponent<SpriteRenderer>().enabled = true;
-    }
+    
     
     private IEnumerator Create_nBoule(int n, float f, Vector3 direction, GameObject ballPrefab)
     {
