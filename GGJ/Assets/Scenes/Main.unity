@@ -720,12 +720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1968199073}
-  lazerPrefab: {fileID: 0}
+  lazerPrefab: {fileID: 4102435075567046928, guid: ce0041b08de98a04db725cd2d9c77651, type: 3}
   startLazerPrefab: {fileID: 1180613783670182312, guid: a58b6f5a9b531504e999bca099079c74, type: 3}
-  ballPrefab: {fileID: 1180613783670182312, guid: a58b6f5a9b531504e999bca099079c74, type: 3}
-  bigBallPrefab: {fileID: 0}
+  ballPrefab: {fileID: 1180613783670182312, guid: b5388ac0343132149a8a7f0eb0f24276, type: 3}
+  bigBallPrefab: {fileID: 1180613783670182312, guid: a58b6f5a9b531504e999bca099079c74, type: 3}
   startZI: {fileID: 0}
-  uiHealthBarScript: {fileID: 0}
+  uiHealthBarScript: {fileID: 634273985}
   bouleAudio: {fileID: 0}
   lasercastAudio: {fileID: 0}
   laserAudio: {fileID: 0}
