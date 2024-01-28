@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEditor.U2D.Aseprite;
 
 
 public class Message : MonoBehaviour
@@ -127,6 +128,9 @@ public class Message : MonoBehaviour
                     case("Slash"): //!
                         keyString = "!";
                         break;
+                    case("Quote"): //!
+                        keyString = "Ù";
+                        break;
                     default:
                         keyString = newKey.ToString();
                         break;
@@ -159,12 +163,12 @@ public class Message : MonoBehaviour
                 {
                     keyString = "Ê";
                 }
-                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift))
+                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     && Input.GetKey(KeyCode.Alpha9)) //9
                 {
                     keyString = "9";
                 }
-                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift))
+                if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     && Input.GetKey(KeyCode.Comma)) //.
                 {
                     keyString = ".";
