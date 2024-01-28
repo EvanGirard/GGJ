@@ -123,6 +123,7 @@ public class BossManager : MonoBehaviour
         if (_variationTime >= 2f && !_isAttacking)
         {
             _isAttacking = true;
+            
             int newpattern = RandomPatern();
             while (newpattern == oldpattern)
             {
@@ -259,6 +260,7 @@ public class BossManager : MonoBehaviour
 
     private IEnumerator CreateDW()
     {
+        _animator.SetTrigger(IsAttackingID);
         bossAudioSource.PlayOneShot(lasercastAudio);
         GameObject newLazer1 = Instantiate(lazerPrefab, new Vector3(0,0,0), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)) );
         GameObject newLazer2 = Instantiate(lazerPrefab, new Vector3(0,0,0), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0)) );
@@ -283,6 +285,8 @@ public class BossManager : MonoBehaviour
     
     private IEnumerator Create_nBoule(int n, float f, Vector3 direction, GameObject ballPrefab)
     {
+        _animator.SetTrigger(IsAttackingID);
+        
         for (int i = 0; i < n; i += 1)
         {
             yield return new WaitForSeconds(f);
@@ -290,10 +294,6 @@ public class BossManager : MonoBehaviour
             bossAudioSource.PlayOneShot(bouleAudio);
             GameObject ball = Instantiate(ballPrefab, gameObject.transform.position, gameObject.transform.rotation);
             ball.GetComponent<Rigidbody2D>().velocity = direction;
-
-            yield return new WaitForSeconds(0.1f);
-
-            ball.GetComponent<SpriteRenderer>().enabled = true;
         }
         
         _isAttacking = false;
@@ -303,6 +303,8 @@ public class BossManager : MonoBehaviour
     
     IEnumerator CouloirLaser()
     {
+        _animator.SetTrigger(IsAttackingID);
+        
         float speed=2f;
         
         // création de l'origine des lasers
@@ -366,8 +368,9 @@ public class BossManager : MonoBehaviour
     
     IEnumerator GBlaster()
     {
-        for (int i = 0; i < 2; i += 1)
+        for (int i = 0; i < 1; i += 1)
         {
+            _animator.SetTrigger(IsAttackingID);
             float speed=10f;
         
             // création de l'origine des lasers
@@ -388,7 +391,7 @@ public class BossManager : MonoBehaviour
             Destroy(trait2);
             
             // deuxièmes attaques
-        
+            _animator.SetTrigger(IsAttackingID);
             // création de l'origine des lasers
             bossAudioSource.PlayOneShot(lasercastAudio);
             trait1 = Instantiate(lazerPrefab, new Vector3(0, 0 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
@@ -411,7 +414,7 @@ public class BossManager : MonoBehaviour
             Destroy(trait3);
             
             // troisièmes attaques
-        
+            _animator.SetTrigger(IsAttackingID);
             // création de l'origine des lasers
             bossAudioSource.PlayOneShot(lasercastAudio);
             trait1 = Instantiate(lazerPrefab, new Vector3(0, -1 ), Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(1, 0, 0)));
@@ -433,6 +436,7 @@ public class BossManager : MonoBehaviour
             Destroy(trait3);
             
             // quatriemes attaques
+            _animator.SetTrigger(IsAttackingID);
             
             // création de l'origine des lasers
             bossAudioSource.PlayOneShot(lasercastAudio);
@@ -461,6 +465,7 @@ public class BossManager : MonoBehaviour
     
     IEnumerator SJKaleido()
     {
+        _animator.SetTrigger(IsAttackingID);
         float speed = 2f;
         float offset = 2f;
         for (int i = 0; i < 4; i += 1)
