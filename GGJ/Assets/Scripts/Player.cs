@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
         return _isDead;
     }
     
+    public void SetIsDead()
+    {
+        _isDead = true;
+    }
+    
     
     public void SetCanMove(bool state)
     {

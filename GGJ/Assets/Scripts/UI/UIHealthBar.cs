@@ -9,6 +9,7 @@ public class UIHealthBar : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private AnimationCurve moveBarAnimationCurve;
     [SerializeField] private Player playerScript;
+    [SerializeField] private BossManager bossScript;
 
     private float _capacity = 100f; //Max 200f
     private float _tmpCapacity = 0f;
@@ -32,7 +33,11 @@ public class UIHealthBar : MonoBehaviour
         }
         else
         {
-            if (_capacity >= 200f) return;
+            if (_capacity >= 200f)
+            {
+                bossScript.enabled = false;
+                return;
+            }
             if (_capacity <= 0f) return;
             
             var newCap = _capacity + _tmpCapacity + delta;

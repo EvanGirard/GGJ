@@ -1620,6 +1620,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4585237827691169704, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: playerScript
+      value: 
+      objectReference: {fileID: 1968199076}
     - target: {fileID: 4700790527228840659, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1936,6 +1940,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
+      propertyPath: bossScript
+      value: 
+      objectReference: {fileID: 798889004}
     - target: {fileID: 7568324289864497226, guid: f897bff7fda16e744b1b7f2e8ea72aa1, type: 3}
       propertyPath: playerScript
       value: 

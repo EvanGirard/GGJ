@@ -4,6 +4,7 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private Player playerScript;
     private float _remainingTime = 90f;
 
 
@@ -16,6 +17,7 @@ public class Timer : MonoBehaviour
         else if (_remainingTime <= 0 && !EndGame.win)
         {
             _remainingTime = 0;
+            playerScript.SetIsDead();
             EndGame.gameOver = true;
         }
         

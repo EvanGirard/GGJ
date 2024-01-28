@@ -20,10 +20,9 @@ public class ChargedBall : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time - _spawnTime >= 2f)
-        {
-            _animator.SetBool(IsChargedID,true);
-            _collider2D.enabled = true;
-        }
+        if (Time.time - _spawnTime <= 2f) return;
+        
+        _animator.SetBool(IsChargedID,true);
+        _collider2D.enabled = true;
     }
 }
