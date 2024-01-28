@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour
     
     //son
     [SerializeField] private AudioClip deathSound=null;
-    [SerializeField] private AudioClip damagesound;
+    [SerializeField] private AudioClip damagesound = null;
     private AudioSource _playerAudioSource;
     
     // Animations
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
      */
     public void ApplyDamage(float damage)
     {
+        _playerAudioSource.PlayOneShot( damagesound);
         uiHealthBarScript.ChangeCapacity(-damage);
     }
 
@@ -117,5 +119,6 @@ public class Player : MonoBehaviour
         
     }
 
+    
     #endregion
 }

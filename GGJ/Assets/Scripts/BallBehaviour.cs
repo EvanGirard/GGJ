@@ -11,7 +11,8 @@ public class BallBehaviour : MonoBehaviour
       {
          playerScript.ApplyDamage(5f);
       }
-      if (other.TryGetComponent(out BallBehaviour ball))
+
+      if (other.gameObject.CompareTag("projectile"))
       {
          //Debug.Log(other);
          return;
