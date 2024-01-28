@@ -12,7 +12,7 @@ public class Laser : MonoBehaviour
     {
         _collider2D = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
-        _collider2D.gameObject.SetActive(false);
+        _collider2D.enabled = false;
 
         IsChargedID = Animator.StringToHash("isCharged");
         _spawnTime = Time.time;
@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
         if (Time.time - _spawnTime >= 2f)
         {
             _animator.SetBool(IsChargedID,true);
-            _collider2D.gameObject.SetActive(true);
+            _collider2D.enabled = true;
         }
     }
 }
