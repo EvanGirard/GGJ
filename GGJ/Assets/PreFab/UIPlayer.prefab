@@ -790,7 +790,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 18.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a86584a4bd40cac49a30e175ac37cf6a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4043,7 +4043,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ici on explique les r\xE8gles du jeu"
+  m_text: "<color=grey><b>Objectif principal : </b></color>remplir la jauge de rire
+    du public.\n\n<color=grey><b>Comment : </b></color> En recopiant les phrases
+    affich\xE9es sur le parchemin pour attaquer.Mais attention ! Le Boss ne se laissera
+    pas distraire et cherchera \xE0 vous attaquer. Soyez rapide et agile pour \xE9viter
+    les attaques tout en lan\xE7ant les v\xF4tres  !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2e2c2a74dae26b488f9e76629cfa02c, type: 2}
   m_sharedMaterial: {fileID: 2184585033424783980, guid: b2e2c2a74dae26b488f9e76629cfa02c, type: 2}
@@ -4070,12 +4074,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
+  m_fontSize: 24
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 34
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -5390,7 +5394,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.2
+  m_fontSize: 48
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
