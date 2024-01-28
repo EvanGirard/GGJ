@@ -6,15 +6,13 @@ public class UIHealthBar : MonoBehaviour
 {
     #region Attributes
 
-    [SerializeField] private RectTransform fillRectTransform;
-    [SerializeField] private Image fillColor;
+    [SerializeField] private Image fillImage;
     [SerializeField] private AnimationCurve moveBarAnimationCurve;
     [SerializeField] private Player playerScript;
 
     private float _capacity = 50f; //Max 100f
     private float _tmpCapacity = 0f;
     private bool _inTransition = false;
-    private float _fill = 1f;
 
     #endregion
 
@@ -55,12 +53,9 @@ public class UIHealthBar : MonoBehaviour
         
         while (timeLeft > 0)
         {
-            _fill = Mathf.Lerp(cap / 100f, newCap / 100f, duration - timeLeft);
-        
-            var anchorMax = new Vector2(x: fillRectTransform.anchorMax.x, _fill);
-            fillRectTransform.anchorMax = anchorMax;
+            fillImage.fillAmount = Mathf.Lerp(cap / 100f, newCap / 100f, duration - timeLeft);
             
-            fillColor.color = Color.Lerp(Color.blue, Color.green, _fill);
+            fillImage.color = Color.Lerp(Color.blue, Color.green, fillImage.fillAmount);
             
             yield return null;
             timeLeft -= Time.deltaTime;
@@ -87,13 +82,8 @@ public class UIHealthBar : MonoBehaviour
     
     protected void Start()
     {
-        fillColor.color = Color.Lerp(Color.blue, Color.green, _fill);
-        
-        
-        _fill = _capacity / 100f;
-        
-        var anchorMax = new Vector2(x: fillRectTransform.anchorMax.x, _fill);
-        fillRectTransform.anchorMax = anchorMax;
+        fillImage.fillAmount = _capacity / 100f;
+        fillImage.color = Color.Lerp(Color.blue, Color.green, fillImage.fillAmount);
     }
 
     #endregion
